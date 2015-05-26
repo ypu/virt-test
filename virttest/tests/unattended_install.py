@@ -161,6 +161,10 @@ class UnattendedInstallConfig(object):
             self.unattended_file = os.path.join(test.virtdir,
                                                 self.unattended_file)
 
+        if params.get('use_ovmf_autounattend'):
+            self.unattended_file = re.sub("\.", "_ovmf.",
+                                          self.unattended_file)
+
         if getattr(self, 'finish_program'):
             self.finish_program = os.path.join(test.virtdir,
                                                self.finish_program)
